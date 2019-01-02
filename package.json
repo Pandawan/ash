@@ -1,0 +1,19 @@
+{
+  "name": "ash",
+  "version": "1.0.0",
+  "description": "a simple helper",
+  "main": "index.js",
+  "repository": "https://github.com/PandawanFr/ash.git",
+  "author": "PandawanFr <pandawanfr@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "semistandard && node index.js"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "semistandard": "^13.0.1"
+  }
+}

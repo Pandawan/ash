@@ -1,0 +1,9 @@
+{
+    "eslint.packageManager": "yarn",
+    "javascript.validate.enable": false,
+    "files.eol": "\n",
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "standard.autoFixOnSave": true,
+    "standard.usePackageJson": true
+}
