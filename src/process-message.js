@@ -9,7 +9,8 @@ const languageCode = 'en-US';
 
 const config = {
   credentials: {
-    private_key: process.env.DIALOGFLOW_PRIVATE_KEY,
+    // For some reason, heroku escapes the \n character into \\n, so undo that
+    private_key: process.env.DIALOGFLOW_PRIVATE_KEY.replace('\\n', '\n'),
     client_email: process.env.DIALOGFLOW_CLIENT_EMAIL
   }
 };
