@@ -1,6 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+
 const verifyWebhook = require('./src/verify-webhook');
+const messageWebhook = require('./src/message-webhook');
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -11,5 +13,7 @@ app.use(bodyParser.urlencoded({
 }));
 
 app.get('/', verifyWebhook);
+
+app.post('/', messageWebhook);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
