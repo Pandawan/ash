@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const asyncHandler = require('express-async-handler');
 
 const verifyWebhook = require('./src/verify-webhook');
 const messageWebhook = require('./src/message-webhook');
@@ -14,6 +15,6 @@ app.use(bodyParser.urlencoded({
 
 app.get('/', verifyWebhook);
 
-app.post('/', messageWebhook);
+app.post('/', asyncHandler(messageWebhook));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
