@@ -53,12 +53,9 @@ module.exports = async (event) => {
     }
   };
   try {
-    console.log(process.env);
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
-    console.log(responses);
     await sendTextMessage(userId, result.fulfillmentText);
-    console.log('Success!');
   } catch (error) {
     console.error('Error: ', error);
   }
