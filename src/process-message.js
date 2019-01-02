@@ -52,6 +52,7 @@ module.exports = async (event) => {
     }
   };
   try {
+    console.log(process.env);
     const responses = await sessionClient.detectIntent(request);
     const result = responses[0].queryResult;
     console.log(responses);
