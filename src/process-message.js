@@ -1,4 +1,4 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 
 // From DialogFlow Settings
 const projectId = 'ash-nrbqyn';
@@ -14,8 +14,6 @@ const config = {
   }
 };
 
-console.log(config);
-
 const sessionClient = new dialogflow.SessionsClient(config);
 
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
@@ -25,23 +23,19 @@ const {
 } = process.env;
 
 const sendTextMessage = (userId, text) => {
-  return fetch(
-    `https://graph.facebook.com/v2.6/me/messages?access_token=${FACEBOOK_ACCESS_TOKEN}`, {
-      headers: {
-        'Content-Type': 'application/json'
+  return axios({
+    method: 'post',
+    url: `https://graph.facebook.com/v2.6/me/messages?access_token=${FACEBOOK_ACCESS_TOKEN}`,
+    data: {
+      messaging_type: 'RESPONSE',
+      recipient: {
+        id: userId
       },
-      method: 'POST',
-      body: JSON.stringify({
-        messaging_type: 'RESPONSE',
-        recipient: {
-          id: userId
-        },
-        message: {
-          text
-        }
-      })
+      message: {
+        text
+      }
     }
-  );
+  });
 };
 
 module.exports = (event) => {
@@ -58,6 +52,9 @@ module.exports = (event) => {
     }
   };
 
+  return sendTextMessage(userId, JSON.stringify(request));
+
+  /*
   sessionClient
     .detectIntent(request)
     .then(responses => {
@@ -67,4 +64,5 @@ module.exports = (event) => {
     .catch(err => {
       console.error('ERROR:', err);
     });
+  */
 };
