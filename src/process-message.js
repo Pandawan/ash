@@ -14,6 +14,8 @@ const config = {
   }
 };
 
+console.log(config);
+
 const sessionClient = new dialogflow.SessionsClient(config);
 
 const sessionPath = sessionClient.sessionPath(projectId, sessionId);
